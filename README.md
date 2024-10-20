@@ -117,15 +117,7 @@ C4Context
      - Validate business logic, including restrictions and validation rules.
 
 #### 3. **Implement Automated Testing**
-   - Utilize Postman's built-in test scripts to automate response validation.
-      ```javascript
-      pm.test("Status code is 200", function () {
-          pm.response.to.have.status(200);
-      });
-      pm.test("Response time is less than 200ms", function () {
-          pm.expect(pm.response.responseTime).to.be.below(200);
-      });
-      ```
+   - Use Postman's built-in test scripts to automate response validation.
 
 #### 4. **Set Up Environment Variables**
    - Define variables for dynamic data such as authorization tokens, resource IDs, and URLs.
