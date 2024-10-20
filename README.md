@@ -102,43 +102,28 @@ C4Context
 ### Backend Testing with Postman
 
 #### 1. **Create a Postman Collection**
-   - Set up a new Postman collection to organize your API requests.
-   - Name your collection appropriately, based on your application context (e.g., "Backend API Tests").
+   - Set up Postman collection to organize API requests.
 
 #### 2. **Define API Request Tests**
    - **Authentication API Tests**
      - Create requests to test login and logout endpoints.
      - Validate correct user credentials and error responses for invalid inputs.
    - **CRUD Operations**
-     - Set up requests to validate Create, Read, Update, and Delete operations for core entities, e.g., Products, Users.
-     - Check for correct HTTP status codes (200, 201, 400, 404, etc.) and response body content.
-   - **Additional Functionality**
-     - Test other functionalities such as user profile updates or order processing.
-     - Validate business logic, including restrictions and validation rules.
+     - Set up requests to validate CRUD operations for core entities.
+     - Check for correct HTTP status codes (200, 201, 400, etc.) and response body content.
 
 #### 3. **Implement Automated Testing**
    - Use Postman's built-in test scripts to automate response validation.
 
 #### 4. **Set Up Environment Variables**
-   - Define variables for dynamic data such as authorization tokens, resource IDs, and URLs.
+   - Define variables for dynamic data such as authorization tokens
    - Use Postman Pre-request scripts to dynamically set values required for requests.
 
 #### 5. **Chain Requests for End-to-End Testing**
-   - Create request chains to simulate user interactions or workflow.
-   - Pass data between requests using Postman variables.
+   - Create request chains to simulate user interactions.
 
 #### 6. **Debug and Refine Tests**
-   - Run your test collection in Postman and debug any failing tests.
-   - Modify tests to cover edge cases and error handling scenarios.
-
-#### 7. **Integrate with CI/CD if Applicable**
-   - Optionally, integrate Postman tests with CI/CD pipelines using Newman, Postman's command-line tool.
-   - Automate the execution of tests as part of your build and deployment process.
-
-#### 8. **Documentation and Review**
-   - Document your testing strategy and catalog each tested API with expected results.
-   - Review and adjust testing approaches based on feedback or new requirements.
-
+   - Run test collection in Postman and debug any failing tests.
 
 ### Front-End Development with Angular
 
@@ -203,13 +188,9 @@ C4Context
 
 
 
-### AWS Deployment Task List Based on Revised Architecture
+### AWS Deployment Task List Based on Probable Architecture
 
-#### 1. **Set Up AWS Account and Basic Services**
-   - Ensure an active AWS account is set up.
-   - Enable IAM for managing permissions and roles.
-
-#### 2. **Deploy Frontend on Amazon S3 and CloudFront**
+#### 1. **Deploy Frontend on Amazon S3 and CloudFront**
    - **Amazon S3**
      - Create an S3 bucket to host static assets (HTML, CSS, JS).
      - Configure bucket policies for public access to allow CloudFront to retrieve the contents.
@@ -218,17 +199,17 @@ C4Context
      - Set up CloudFront distribution pointing to your S3 bucket as the origin.
      - Configure caching and SSL/TLS settings for security and performance.
 
-#### 3. **Deploy Frontend Logic on EC2**
+#### 2. **Deploy Frontend Logic on EC2**
    - Launch an EC2 instance for running the Angular application logic.
    - Configure security groups for access through CloudFront.
    - Deploy the Angular application using a suitable web server (e.g., NGINX).
 
-#### 4. **Load Balancing with Application Load Balancer (ALB)**
+#### 3. **Load Balancing with Application Load Balancer (ALB)**
    - Establish an ALB to handle user HTTP/S requests.
    - Target the backend EC2 instances for incoming traffic.
    - Configure health checks and rules for routing traffic efficiently.
 
-#### 5. **Backend Deployment and Database Configuration**
+#### 4. **Backend Deployment and Database Configuration**
    - **Amazon EC2 for Spring Boot Application**
      - Launch EC2 instances to host your Spring Boot backend.
      - Configure the environment by installing necessary software (JRE, web server).
@@ -236,19 +217,13 @@ C4Context
 
    - **Amazon RDS**
      - Set up an RDS instance for managing your database.
-     - Migrate the database schema from previous systems.
      - Configure security groups to allow connections from backend EC2 instances.
 
-#### 6. **Content Distribution and Frontend Integration**
-   - Ensure CloudFront is distributing CDN content efficiently.
+#### 5. **Content Distribution and Frontend Integration**
+   - Ensure CloudFront is distributing CDN content.
    - Configure interactions between the Angular application on EC2 and backend EC2 using the ALB.
 
-#### 7. **Monitoring and Logging with CloudWatch**
+#### 6. **Monitoring and Logging with CloudWatch**
    - Enable CloudWatch monitoring for both backend and frontend EC2 instances.
    - Set up CloudWatch alarms for critical performance metrics.
    - Configure log streams for application logs on EC2.
-
-### 8. **Testing and Optimization**
-   - Conduct integration testing of frontend and backend through CloudFront and ALB.
-   - Perform load testing to ensure appropriate scalability.
-   - Optimize performance using CloudFront caching policies and EC2 instance types.
