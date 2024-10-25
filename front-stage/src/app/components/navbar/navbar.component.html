@@ -1,0 +1,36 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Logo aligned to the left -->
+    <a routerLink="/" class="logo">T-Shurts</a>
+
+    <!-- Flex container for links and buttons -->
+    <div class="flex-grow-container">
+      <!-- Centered Products link -->
+      <ul class="center-nav">
+        <li><a routerLink="/products" class="products-link">Products</a></li>
+      </ul>
+
+      <!-- Login/Register/Logout links -->
+      <ul class="auth-links">
+        <li *ngIf="authService.isLoggedIn()">
+          <button (click)="logout()">Logout</button>
+        </li>
+        <li *ngIf="!authService.isLoggedIn()">
+          <a routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="!authService.isLoggedIn()">
+          <a routerLink="/register">Register</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Shopping cart aligned to the far right -->
+    <ul class="shopping-cart">
+      <li>
+        <a routerLink="/cart">
+          <i class="fa fa-shopping-cart"></i> Cart
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

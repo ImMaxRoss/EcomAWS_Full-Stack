@@ -1,0 +1,43 @@
+<div class="product-container">
+  <h2>Products</h2>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearch()"
+      placeholder="Search products..."
+    />
+  </div>
+
+  <!-- Product List -->
+  <div class="product-list">
+    <div *ngFor="let product of filteredProducts" class="product-item">
+      <!-- Product Image -->
+      <img
+        src="/assets/images/{{ product.productId }}.jpg"
+        alt="{{ product.productName }}"
+        onerror="this.onerror=null; this.src='/assets/images/default.jpg';"
+      />
+
+      <!-- Product Details -->
+      <div class="product-details">
+        <h3>{{ product.productName }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price | currency }}</p>
+        <!-- Display discount and special price if available -->
+        <p *ngIf="product.discount">Discount: {{ product.discount }}%</p>
+        <p *ngIf="product.specialPrice">Special Price: {{ product.specialPrice | currency }}</p>
+        <p *ngIf="product.category">Category: {{ product.category }}</p>
+        <!-- Add to Cart button -->
+        <button (click)="addToCart(product)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
