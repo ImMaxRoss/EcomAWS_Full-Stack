@@ -29,8 +29,8 @@ export interface AuthenticationResponse {
 export class AuthService {
             // EC2 IP = 98.84.36.177
   
-  // private baseUrl = "http://localhost:8080/api";
-  private baseUrl = "http://98.84.36.177:8080/api";
+  private baseUrl = "http://localhost:8080/api";
+  // private baseUrl = "http://98.84.36.177:8080/api";
   private currentUserSubject: BehaviorSubject<AuthenticationResponse | null>;
   public currentUser: Observable<AuthenticationResponse | null>;
 
@@ -93,6 +93,7 @@ export class AuthService {
   
   logout(): void {
     this.removeLocalStorageItem('currentUserToken');
+    this.removeLocalStorageItem('userId'); // Ensure userId is also removed
     this.currentUserSubject.next(null);
   }
 

@@ -6,11 +6,15 @@
       <p>Price: {{ item.productPrice | currency }}</p>
       <p>Quantity: {{ item.quantity }}</p>
       <button (click)="removeItem(item.cartItemId!)">Remove</button>
-      <!-- Optionally, add controls to update quantity -->
     </div>
   </div>
 </div>
-
 <ng-template #emptyCart>
   <p>Your cart is empty.</p>
 </ng-template>
+
+<!-- Debugging information -->
+<div>
+  <h3>Debug Information</h3>
+  <pre>{{ cartItems | json }}</pre>
+</div>

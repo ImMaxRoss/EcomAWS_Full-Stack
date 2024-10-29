@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Product } from './product.service';
-import { environment } from '../../environments/environment';
 
 export interface CartItem {
   cartItemId?: number;
@@ -17,8 +16,7 @@ export interface CartItem {
   providedIn: 'root',
 })
 export class ShoppingCartService {
-  // private cartUrl = "http://localhost:8080/api/carts";
-  private cartUrl = "http://98.84.36.177:8080/api/carts";
+  private cartUrl = "http://localhost:8080/api/carts";
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -35,10 +33,10 @@ export class ShoppingCartService {
       quantity: quantity,
     };
   
-    return this.http.post<CartItem>(`${this.cartUrl}/add`, body, { headers });
+    return this.http.post<CartItem>(`${this.cartUrl}/items/add`, body, { headers });
   }
 
-  getCartItems(): Observable<CartItem[]> {
+  getCartItems(userId: number): Observable<CartItem[]> {
     const token = this.authService.getToken();
     let headers = new HttpHeaders();
 
@@ -46,7 +44,7 @@ export class ShoppingCartService {
       headers = headers.set('Authorization', 'Bearer ' + token);
     }
 
-    return this.http.get<CartItem[]>(`${this.cartUrl}/cart/user`, { headers });
+    return this.http.get<CartItem[]>(`${this.cartUrl}/items/cart/${userId}`, { headers });
   }
 
   removeFromCart(cartItemId: number): Observable<any> {
@@ -57,7 +55,6 @@ export class ShoppingCartService {
       headers = headers.set('Authorization', 'Bearer ' + token);
     }
 
-    return this.http.delete(`${this.cartUrl}/${cartItemId}`, { headers });
+    return this.http.delete(`${this.cartUrl}/items/${cartItemId}`, { headers });
   }
-
 }

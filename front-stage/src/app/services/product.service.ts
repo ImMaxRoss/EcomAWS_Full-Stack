@@ -19,8 +19,8 @@ export interface Product {
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'http://98.84.36.177:8080/api/products';
-  // private baseUrl = 'http://localhost:8080/api/products';
+  // private baseUrl = 'http://98.84.36.177:8080/api/products';
+  private baseUrl = 'http://localhost:8080/api/products';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
